@@ -1,0 +1,25 @@
+---
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: pod
+objects:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    name: ${NAME}
+  spec:
+    containers:
+    - command:
+      - sh
+      - -c
+      - sleep 600
+      image: ${IS}:latest
+      name: ${NAME}
+    restartPolicy: Never
+parameters:
+- description: Pod name
+  name: NAME
+  value: pod
+- description: ImageStream name
+  name: IS
